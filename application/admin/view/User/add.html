@@ -1,0 +1,70 @@
+
+    <meta charset="utf-8">
+    <script src="{:WEB_STATIC}/layui/layui.js"></script>
+    <script src="{:WEB_STATIC}/js/jquery-1.11.1.min.js"></script>
+    <script src="{:WEB_STATIC}/js/admin.js"></script>
+    <link rel="stylesheet" href="{:WEB_STATIC}//layui/css/layui.css">
+
+
+    <form class="layui-form" action="{:url('admin/User/save')}" method="post">
+        <div class="layui-form-item" style="width:300px;height:40px;">
+            <label class="layui-form-label">选择用户组</label>
+            <div class="layui-input-block">
+                <select name="groupid" lay-verify="required">
+                    <option value="0"></option>
+                    {foreach name="glist" item="vo"}
+                    <option value="{$vo.id}">{$vo.title}</option>
+                {/foreach}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" style="width:190px;height:40px;" required lay-verify="required" placeholder="请输入标用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">请填写6到20位密码</div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机</label>
+            <div class="layui-input-inline">
+                <input type="text" name="mobile"  placeholder="请输入手机" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">用于找回密码使用</div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email"  style="width:190px;height:40px;" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">单选框</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="1" title="男" checked>
+                <input type="radio" name="sex" value="2" title="女" >
+                <input type="radio" name="sex" value="0" title="变种人">
+            </div>
+        </div>
+
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="UserSubmit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+

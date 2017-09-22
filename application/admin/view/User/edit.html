@@ -1,0 +1,80 @@
+
+    <meta charset="utf-8">
+    <script src="{:WEB_STATIC}/layui/layui.js"></script>
+    <script src="{:WEB_STATIC}/js/jquery-1.11.1.min.js"></script>
+    <script src="{:WEB_STATIC}/js/admin.js"></script>
+    <link rel="stylesheet" href="{:WEB_STATIC}//layui/css/layui.css">
+
+
+    <form class="layui-form" action="{:url('admin/user/update')}" method="post">
+        <div class="layui-form-item" style="width:300px;height:40px;">
+            <label class="layui-form-label">选择用户组</label>
+            <div class="layui-input-block">
+                <select name="groupid">
+                    <option value="0"></option>
+                    {foreach name="glist" item="vo"}
+                    <option value="{$vo.id}" {if condition="$user.groupid==$vo['id']"} selected="selected"{/if}>{$vo.title}</option>
+                {/foreach}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" value="{$user.username}" name="username" style="width:190px;height:40px;" required lay-verify="required" placeholder="请输入标用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" value="{$user.password}"   name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">请填写6到20位密码</div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机</label>
+            <div class="layui-input-inline">
+                <input type="text" name="mobile" value="{$user.mobile}"   placeholder="请输入手机" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">用于找回密码使用</div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" value="{$user.email}"  style="width:190px;height:40px;" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">单选框</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="1" title="男" {if condition="$user.sex==1"} checked="checked"{/if}>
+                <input type="radio" name="sex" value="2" title="女" {if condition="$user.sex==2"} checked="checked"{/if}>
+                <input type="radio" name="sex" value="0" title="变种人" {if condition="$user.sex==0"} checked="checked"{/if}>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1" title="启用" {if condition="$user.status==1"} checked="checked"{/if}>
+                <input type="radio" name="status" value="0" title="禁用" {if condition="$user.status==0"} checked="checked"{/if}>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+        <input type="hidden" name="id" value="{$user.id}">
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="UserSubmit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
